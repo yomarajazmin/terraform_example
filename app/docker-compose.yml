@@ -17,5 +17,4 @@ services:
     container_name: kanban-ui
     ports:
       - 4200:80
-    links:
-      - kanban-app
+
