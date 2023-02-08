@@ -33,6 +33,8 @@ services:
       - 4200:80
     links:
       - kanban-app
+networks:
+  default:
 
 volumes:
   kanban-data:
