@@ -27,7 +27,7 @@ services:
       - kanban-postgres
 
   kanban-ui:
-    image: yomarajazmin/test_kanban_app
+    image: yomarajazmin/test_kanban_ui
     container_name: kanban-ui
     ports:
       - 4200:80
