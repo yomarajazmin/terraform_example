@@ -2,7 +2,7 @@ version: '3'
 services:
 
   kanban-app:
-    build: ./kanban-app
+    image: yomarajazmin/test_kanban_app
     container_name: kanban-app
     environment:
       - DB_SERVER=DB_URL
@@ -13,8 +13,10 @@ services:
       - 8080:8080
 
   kanban-ui:
-    build: ./kanban-ui
+    image: yomarajazmin/test_kanban_ui
     container_name: kanban-ui
     ports:
       - 4200:80
 
+networks:
+  default:
