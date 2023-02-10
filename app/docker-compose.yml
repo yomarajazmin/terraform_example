@@ -1,18 +1,6 @@
 version: '3'
 services:
 
-  kanban-postgres:
-    image: "postgres:9.6-alpine"
-    container_name: kanban-postgres
-    volumes:
-      - kanban-data:/var/lib/postgresql/data
-    ports:
-      - 5432:5432
-    environment:
-      - POSTGRES_DB=kanban
-      - POSTGRES_USER=kanban
-      - POSTGRES_PASSWORD=kanban
-
   kanban-app:
     image: yomarajazmin/test_kanban_app
     container_name: kanban-app
@@ -23,8 +11,6 @@ services:
       - POSTGRES_PASSWORD=kanban
     ports:
       - 8080:8080
-    links:
-      - kanban-postgres
 
   kanban-ui:
     image: yomarajazmin/test_kanban_ui
@@ -35,6 +21,3 @@ services:
       - kanban-app
 networks:
   default:
-
-volumes:
-  kanban-data:
