@@ -5,7 +5,7 @@ services:
     image: yomarajazmin/test_kanban_app
     container_name: kanban-app
     environment:
-      - DB_SERVER=kanban-postgres
+      - DB_SERVER=DB_URL
       - POSTGRES_DB=kanban
       - POSTGRES_USER=kanban
       - POSTGRES_PASSWORD=kanban
