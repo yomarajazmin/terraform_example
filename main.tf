@@ -19,11 +19,6 @@ resource "aws_key_pair" "webserver-key" {
   public_key = file("~/.ssh/aws_key.pub")
 }
 
-#Get Linux AMI ID using SSM Parameter endpoint in us-east-1
-data "aws_ssm_parameter" "webserver-ami" {
-  name = "/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2"
-}
-
 #Create VPC in us-east-1
 resource "aws_vpc" "vpc" {
   cidr_block           = "10.0.0.0/16"
@@ -115,13 +110,6 @@ resource "aws_security_group" "sg" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
-  ingress {
-    description = "allow traffic from TCP/4200"
-    from_port   = 3000
-    to_port     = 3000
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
   egress {
     from_port   = 0
     to_port     = 0
@@ -131,7 +119,7 @@ resource "aws_security_group" "sg" {
 }
 
 output "app-Public-IP" {
-  value = aws_instance.appexample.public_ip
+  value = aws_instance.app.public_ip
 }
 
 output "db-Public-IP" {
@@ -168,7 +156,7 @@ resource "aws_instance" "db" {
 
 
 
-resource "aws_instance" "appexample" {
+resource "aws_instance" "app" {
   ami           = "ami-027c83104e9745fdf"
   instance_type = "t2.micro"
   key_name                    = aws_key_pair.webserver-key.key_name
